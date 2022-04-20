@@ -1,1 +1,127 @@
-print('hi')
+import sys
+class Menu:
+    def __init__(self, main_menu = 0):
+        self.main_menu = main_menu
+
+    def user_input(self):
+        while True:
+            user_selection = input("\nSelect a number: \n1. Patient Portal\n"
+                                   "2. Doctor Portal\n"
+                                   "3. Nurse Portal\n"
+                                   "Please select: ")
+            try: 
+                try:
+                    self.main_menu = int(user_selection)
+                    if self.main_menu == 1:
+                        print("Patient Portal selected. ")
+                        d = Patient()
+                        d.patient_names()
+                        break
+                    elif self.main_menu == 2:
+                        print("Doctor Portal selected. ")
+                        e = Doctor()
+                        e.doctor()
+                        break
+                    elif self.main_menu == 3:
+                        print("Nurse Portal selected. ")
+                        f = Nurse()
+                        e.nurse()
+                        break    
+                    else:
+                        print('Wrong number selected. Try again. \n')
+                except ValueError:
+                    self.main_menu = float(user_selection)
+            except ValueError:
+                print("Error, not a number. Next time, enter numeric input. \n")
+
+               
+               
+               
+# PERSON CLASS
+class Person():
+	
+
+# Patient Class
+class Patient():
+    def __init__(self, patient_id = 0, first_name = '', last_name = '', age = 0,
+                 address = '', admit_date = ''):
+        self.patient_id = patient_id
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+        self.address = address
+        self.admit_date = admit_date
+    def patient_names(self):
+        dictionary_keys = {}
+        while True:
+            try:
+                patient_welcome = int(input("Welcome to the Patient Portal. To create a Patient profile, press 1.\n"
+                                            "For a list of patients, press 2. \nIf you're a patient and would like to see your profile, press 3.\n"
+                                            "Please select: "))
+                try:
+                    patient_welcome = int(patient_welcome)
+                    if patient_welcome == 1:
+                        print("Patient Portal selected.")
+                        key_add = int(input("How many patients to add? "))
+                        for i in range(key_add):
+                            print("For the key identifier, we'll use the patient ID. ")
+                            key_id = input("Patient ID: ")
+                            attributes_list = []
+                            self.first_name = input("First name: ")
+                            attributes_list.append(self.first_name)
+                            self.last_name = input("Last name: ")
+                            attributes_list.append(self.last_name)
+                            self.age = int(input("age: "))
+                            attributes_list.append(self.age)
+                            self.address = input("Address: ")
+                            attributes_list.append(self.address)
+                            self.admit_date = input("Admit date: ")
+                            attributes_list.append(self.admit_date)
+                            dictionary_keys[key_id] = attributes_list
+                        for key, value in dictionary_keys.items():
+                            print(key, value)
+                        back_to_patient_menu = input('Back to patient menu? ')
+                        if back_to_patient_menu == "n" or back_to_patient_menu == "N":
+                            break
+                        while back_to_patient_menu != 'y' and back_to_patient_menu != 'Y':
+                            back_to_patient_menu = input("That's not a valid choice. (Y)es or (N)o? ")
+                            if back_to_patient_menu == "n" or back_to_patient_menu == "N":
+                                sys.exit()
+                    elif patient_welcome == 2:
+                        if not dictionary_keys:
+                            print("Empty")
+                        else:
+                            print("Here's a list: ")
+                            for key, value in dictionary_keys.items():
+                                print("Patient ID: ", key, value)
+                    else:
+                        print('Wrong number selected. Try again. \n')
+                except ValueError:
+                    patient_welcome = float(patient_welcome)
+            except ValueError:
+                print("Error, not a number. Next time, enter numeric input. \n")
+        return dictionary_keys
+
+    def __str__(self):
+        return self.print_name() + self.doctor_input
+        
+        
+        
+class Doctor():
+    def __init__(self, first_name = '', last_name = ''):
+        self.first_name = first_name
+        self.last_name = last_name
+    def doctor(self):    
+        print("Hello")
+        
+        
+class Nurse():
+	def __init__(self, first_name = '', last_name = ''):
+        	self.first_name = first_name
+        	self.last_name = last_name
+  def doctor(self):    
+  		print("Hello")
+    	
+       
+initialize = Menu()
+initialize.user_input()

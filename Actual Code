@@ -21,6 +21,11 @@ class Menu:
                         e = Doctor()
                         e.doctor()
                         break
+		    elif self.main_menu == 3:
+                        print("Nurse Portal selected. ")
+                        c = Nurse()
+                        c.nurse_names()
+                        break
                     else:
                         print('Wrong number selected. Try again. \n')
                 except ValueError:
@@ -189,7 +194,7 @@ class Nurse():
         dictionary_keys = {}
         while True:
             try:
-                nurse_welcome = int(input("Welcome to the nurse portal. To create a new patient press 1\n"
+                nurse_welcome = int(input("Welcome to the nurse portal.\n To create a new patient press 1\n"
                                         "To view a patients details, press 2\n"))
                 try: 
                     nurse_welcome = int(nurse_welcome)

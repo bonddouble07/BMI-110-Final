@@ -6,7 +6,8 @@ class Menu:
         while True:
             user_selection = input("\nSelect a number: \n1. Patient Portal\n"
                                    "2. Doctor Portal\n"
-                                   "Please select: ")
+				   "3. Nurse Portal\n"
+                                   "Please select 1, 2, or 3: ")
             try: 
                 try:
                     self.main_menu = int(user_selection)

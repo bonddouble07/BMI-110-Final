@@ -127,10 +127,7 @@ class Doctor():
                 doctor_password = input('please enter password: ')
                 
                 
-                if doctor_username == 'cheif':
-                    print(doctor_password)
-                
-                if doctor_password == '12345':
+                if doctor_password == '12345' and doctor_username == 'cheif':
                     print('Hello Doctor')
                     create_new = input('Would you like to create new Doctor Profile')
                     if create_new == "n" or create_new == "N":

@@ -40,7 +40,7 @@ class Menu:
             except ValueError:
                 print("Error, not a number. Try again. \n")
 
-# Person module
+# PERSON MODULE
 class Person:
     def __init__(self, last_name, first_name):
         self.last_name = last_name
@@ -52,7 +52,7 @@ class Person:
         
         
         
-# Doctor module        
+# DOCTOR MODULE       
 class Doctor(Person):
     
     # Initialize the doctor constants
@@ -109,6 +109,29 @@ class Doctor(Person):
         for key, value in self.dictionary_keys.items():
             print(key, value)
             
+    # Create a new doctor profile
+    def create_new_doctor():
+        input('Would you like to create new Doctor Profile')
+            if create_new == "n" or create_new == "N":
+                break
+            while create_new != 'y' and create_new != 'Y':
+                create_new = input("That's not a valid choice, please try again\n (Y)es or (N)o? ")
+            if create_new == 'Y' or create_new == 'y':
+                print('Lets create a new profile')
+                    attributes_list2 = []
+                    self.first_name = input('please enter first name of new doctor: ')
+                    attributes_list2.append(self.first_name)
+                    self.last_name = input('please enter last name of new doctor: ')
+                    attributes_list2.append(self.last_name)
+                    self.specialty = input('please enter specialty: ')
+                    attributes_list2.append(self.specialty)
+                    self.phone_number = input('please enter phone number: ')
+                    attributes_list2.append(self.phone_number)
+                    self.username = input('Please enter new Username: ')
+                    attributes_list2.append(self.username)
+                    self.password = input('Please enter New password: ')
+                    attributes_list2.append(self.password)
+                    
     # Creates lab test
     def database(self):
         for key,value in self.dictionary_keys.items():
@@ -169,13 +192,16 @@ class Doctor(Person):
     
     # Defines the doctor menu
     def doctor_menu(self):
+        # Initialize the constants
         w = Doctor()
         w.doctor_login()
         main_menu = Menu()
+        
         while True:
             try:
                 doctor_welcome = int(input("Welcome to the Doctor Portal.\n To create a Patient profile, press 1.\n"
                                             "For a list of patients, press 2.\n To assign lab tests to a patient, press 3.\n"
+                                            "To create a new doctor profile, press 4.\n"
                                             "To go back to the main menu, press 0.\n Please select: "))
                 try:
                     if doctor_welcome == 0:
@@ -201,6 +227,8 @@ class Doctor(Person):
                             print(self.tests)
                     elif doctor_welcome == 3:
                         w.lab_tests_request()
+                    elif doctor_welcome == 4:
+                        w.create_new_doctor():
                 except ValueError:
                     doctor_welcome = float(doctor_welcome)
             except ValueError:
@@ -229,7 +257,7 @@ class Patient(Doctor):
         while True:
             try:
                 patient_welcome = int(input("If you're a patient and would like to see your profile, press 1.\n"
-                                            "To go back to the main menu, press 0. Please select: "))
+                                            "To go back to the main menu, press 0.\n Please select: "))
                 try:
                     if patient_welcome == 0:
                         main_menu.user_input()
@@ -266,7 +294,7 @@ class Patient(Doctor):
     
     
     
-# Define a nurse class
+# Define a nurse module
 class Nurse():
     def __init__(self, patient_id = 0, first_name = '', last_name = '', age = 0,
                  address = '', admit_date = ''):

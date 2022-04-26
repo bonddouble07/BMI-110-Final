@@ -143,7 +143,7 @@ class Doctor(Person):
     def database_addition(self):
         print("For the key identifier, we'll use the patient ID. ")
         key_id = input("Patient ID: ")
-        att_list = []
+        attribute_list = []
         self.first_name = input("First name: ")
         attributes_list.append(self.first_name)
         self.last_name = input("Last name: ")
@@ -156,9 +156,9 @@ class Doctor(Person):
         attributes_list.append(self.admit_date)
         self.key_two = input("Test ID: ")
         self.addition = int(input("test cost: "))
-        att_list.append(self.addition)
+        attributes_list.append(self.addition)
         self.dictionary_keys[key_id] = attributes_list
-        self.dictionary_keys[self.key_two] = att_list
+        
     
     # Create a lab test database               
     def database(self):

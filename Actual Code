@@ -151,7 +151,7 @@ class Doctor(Person):
     def database_addition(self):
         print("For the key identifier, we'll use the patient ID. ")
         key_id = input("Patient ID: ")
-        attribute_list = []
+        attributes_list = []
         self.first_name = input("First name: ")
         attributes_list.append(self.first_name)
         self.last_name = input("Last name: ")
@@ -176,7 +176,7 @@ class Doctor(Person):
             number = input("ID to discharge: ")
             test = input("Test ID:")
             if number in self.dictionary_keys.keys():
-                pop_dict = self.dicitonary_keys.pop(test)
+                pop_dict = self.dictionary_keys.pop(test)
                 pop_dict = self.dictionary_keys.pop(number)
             print(self.dictionary_keys)  
                            

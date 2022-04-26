@@ -255,11 +255,14 @@ class Doctor(Person):
                 print('the following doctor profile was written: First Name: %s , Last Name %s , Specialty %s , Phone Number %s ,username %s , Password %s'
                               % (self.first_name, self.last_name, self.specialty, self.phone_number, self.username, self.password))
                                     
-                
+
+
+
+
 class Patient(Doctor):
     def __init__(self, patient_id = 0, first_name = '', last_name = '', age = 0,
                  address = '', admit_date = ''):
-        super().__init__(first_name = '', last_name = '', dictionary_keys = {})
+        super().__init__(first_name = '', last_name = '', dictionary_keys = {}, test_list = {}, cost = 0, tests = {}, tabulation_total = [], total = 0, addition = [])
         self.patient_id = patient_id
         self.first_name = first_name
         self.last_name = last_name
@@ -267,16 +270,17 @@ class Patient(Doctor):
         self.address = address
         self.admit_date = admit_date
 
+   
     def patient_names(self):
         w = Doctor()
-        count = 0
-        counts = 0
         main_menu = Menu()
         doctor = Doctor()
         while True:
+            count = 0
+            counts = 0
             try:
                 patient_welcome = int(input("If you're a patient and would like to see your profile, press 1.\n"
-                                            "To go back to the main menu, press 0.\n Please select: "))
+                                            "To go back to the main menu, press 0. Please select: "))
                 try:
                     if patient_welcome == 0:
                         main_menu.user_input()
@@ -284,8 +288,8 @@ class Patient(Doctor):
                         patient_id = input("What is your unique patient ID? ")
                         patient_first_name = input("What is your first name? ")
                         patient_last_name = input("What is your last name? ")
-                        result = doctor.fetch_database(patient_id)
-                        if patient_id and patient_first_name in result:
+                        result = doctor.fetch_database_value(patient_id)   
+                        if patient_first_name in result:
                             if patient_last_name in result:
                                 for c in patient_first_name:
                                     if c in result[0]:
@@ -306,13 +310,17 @@ class Patient(Doctor):
                     patient_welcome = float(patient_welcome)
             except ValueError:
                 print("Error, not a number. Next time, enter numeric input. \n")
-
+   
+ 
     def __str__(self):
         return self.patient_names()
 
     
     
-    
+
+
+
+
 # Define a nurse module
 class Nurse():
     def __init__(self, patient_id = 0, first_name = '', last_name = '', age = 0,

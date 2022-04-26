@@ -451,10 +451,13 @@ class Nurse():
         dictionary_keys = {}
         while True:
             try:
-                nurse_welcome = int(input("Welcome to the Nurse portal.\n To create a new patient press 1\n"
-                                        "To view a patients details, press 2\n"))
+                nurse_welcome = int(input("Welcome to the Nurse portal.\nTo create a new patient press 1\n"
+                                        "To view a patients details, press 2\nTo return to the main menu, press 0"))
                 try: 
                     nurse_welcome = int(nurse_welcome)
+                    nurse_welcome = int(nurse_welcome)
+                    if nurse_welcome == 0:
+                        main_menu.user_input()
                     if nurse_welcome == 1:
                         print("Nurse Portal selected.")
                         key_add = int(input("How many patients to add? "))

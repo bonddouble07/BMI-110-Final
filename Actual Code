@@ -292,7 +292,46 @@ class Doctor(Person):
                 print("Try again")   
     
    
-   
+
+   # Allergies function
+   def Allergies(self):
+        allergiesList = []
+        try:
+            allergies = input('1: Input new allergies\n'
+            '2: View patient allergies\n'
+            '3: Return to Doctor portal\n'
+            'Please select option 1, 2 or 3: ')
+            allergies = int(allergies)
+            try:
+                if allergies == 1:
+                    addedAllergies = input('How many allergies will the patient be diagnosed with: ')
+                    addedAllergies = int(addedAllergies)
+                    for i in addedAllergies:
+                        diagnosedAllergies = input('Allergy: ')
+                        allergiesList.append(diagnosedAllergies)
+                    print(*allergiesList, sep = ', ')       
+                elif allergies ==2:
+                    if not allergiesList:
+                        print('Empty')
+                    else:
+                        print('Allergies list: ')
+                        print(*allergiesList, sep = ', ')
+                elif allergies == 3:
+                    sys.exit
+                else:
+                    print('Invalid number selected\n'
+                    '1: Input new allergies\n'
+                    '2: View patient allergies\n'
+                    '3: Return to Doctor portal\n'
+                    'Please select option 1, 2 or 3: ')
+            except numberError:
+                allergies = float(allergies)
+        except: 
+            print('Invalid input, please enter a number.')
+        return allergiesList
+    
+
+
    
  # Create a new doctor profile
     def create_new_doctor(self):

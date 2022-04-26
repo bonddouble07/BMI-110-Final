@@ -106,11 +106,12 @@ class Doctor(Person):
                                             "For a list of patients, press 2.\nTo assign lab tests to a patient, press 3.\n"
                                             "To create a new Doctor Profile, press 4.\n"
                                             "To switch to  Nurse view, Press 5\n"
+                                            "To discharge a patient, press 6"
                                             "To go back to the main menu, press 0. Please select: "))
                 try:
                     if doctor_welcome == 0:
                         main_menu.user_input()
-                    if doctor_welcome == 1:
+                    elif doctor_welcome == 1:
                         print('Welcome to create a patient profile. ')
                         key_add = int(input("How many patients to add? "))
                         for patient in range(key_add):
@@ -123,12 +124,6 @@ class Doctor(Person):
                             back_to_patient_menu = input("That's not a valid choice. (Y)es or (N)o? ")
                             if back_to_patient_menu == "n" or back_to_patient_menu == "N":
                                 sys.exit()
-                    if doctor_welcome == 4:
-                        w.create_new_doctor()
-                    if doctor_welcome == 5:
-                        print('Now entering Nurse view:')
-                        n.nurse_menu()
-                        
                     elif doctor_welcome == 2:
                         if not self.dictionary_keys:
                             print("Empty")
@@ -137,6 +132,16 @@ class Doctor(Person):
                             w.database()
                     elif doctor_welcome == 3:
                         w.lab_tests_request()
+                        
+                    elif doctor_welcome == 4:
+                        w.create_new_doctor()
+                        
+                    elif doctor_welcome == 5:
+                        print('Now entering Nurse view:')
+                        n.nurse_menu()
+                    elif doctor_welcome == 6:
+                        w.discharge_patient()
+
                 except ValueError:
                     doctor_welcome = float(doctor_welcome)
             except ValueError:
@@ -168,12 +173,14 @@ class Doctor(Person):
         filename_2 = input("Last Name: ")
         with open(filename + filename_2 + "_discharged", "w") as f:
             f.write((filename))
-            number = input("ID to discharge: )
+            number = input("ID to discharge: ")
             test = input("Test ID:")
             if number in self.dictionary_keys.keys():
                 pop_dict = self.dicitonary_keys.pop(test)
                 pop_dict = self.dictionary_keys.pop(number)
-            print(self.dictionary_keys)    
+            print(self.dictionary_keys)  
+                           
+                           
     # Create a lab test database               
     def database(self):
         for key,value in self.dictionary_keys.items():
@@ -406,7 +413,8 @@ class Patient(Doctor):
                         patient_id = input("What is your unique patient ID? ")
                         patient_first_name = input("What is your first name? ")
                         patient_last_name = input("What is your last name? ")
-                        result = w.  
+
+                        
                         if patient_first_name in result:
                             if patient_last_name in result:
                                 for c in patient_first_name:
@@ -507,4 +515,4 @@ class Nurse():
     
 # Initialize the program by calling the Menu() and user_input() functions    
 initialize = Menu()
-initialize.user_input()2
+initialize.user_input()

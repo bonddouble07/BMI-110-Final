@@ -1,7 +1,5 @@
 # initialize the constants
 import sys
-from copy import copy
-from copy import deepcopy
 
 # define the Menu class
 class Menu:
@@ -56,9 +54,8 @@ class Person:
         
 # DOCTOR MODULE       
 class Doctor(Person):
-    
     # Initialize Doctor constants
-    def __init__(self, first_name = '', last_name = '', dictionary_keys = {}, test = {}, cost = 0, tests = {}, total = 0, addition = ''):
+    def __init__(self, first_name = '', last_name = '', dictionary_keys = {}, test_list = {}, cost = 0, tests = {}, tabulation_total = [], total = 0, addition = []):
         super().__init__(first_name, last_name)
         self.first_name = first_name
         self.last_name = last_name
@@ -99,7 +96,7 @@ class Doctor(Person):
     def database_addition(self):
         print("For the key identifier, we'll use the patient ID. ")
         key_id = input("Patient ID: ")
-        attributes_list = []
+        att_list = []
         self.first_name = input("First name: ")
         attributes_list.append(self.first_name)
         self.last_name = input("Last name: ")
@@ -110,45 +107,19 @@ class Doctor(Person):
         attributes_list.append(self.address)
         self.admit_date = input("Admit date: ")
         attributes_list.append(self.admit_date)
-        self.addition = input('Sum: ')
-        # attributes_list.append(self.addition)
+        self.key_two = input("Test ID: ")
+        self.addition = int(input("test cost: "))
+        att_list.append(self.addition)
         self.dictionary_keys[key_id] = attributes_list
-        for key, value in self.dictionary_keys.items():
-            print(key, value)
-            
-# Create a new doctor profile
+        self.dictionary_keys[self.key_two] = att_list
+        
+        
 
-def create_new_doctor(self):
-        input('Would you like to create new Doctor Profile')
-        create_new = input("That's not a valid choice, please try again\n (Y)es or (N)o? ")
-             
-        while create_new != 'y' and create_new != 'Y':
-            print(create_new)
-                
-        if create_new == 'Y' or create_new == 'y':
-            print('Lets create a new profile')
-            attributes_list2 = []
-            self.first_name = input('please enter first name of new doctor: ')
-            attributes_list2.append(self.first_name)
-            self.last_name = input('please enter last name of new doctor: ')
-            attributes_list2.append(self.last_name)
-            self.specialty = input('please enter specialty: ')
-            attributes_list2.append(self.specialty)
-            self.phone_number = input('please enter phone number: ')
-            attributes_list2.append(self.phone_number)
-            self.username = input('Please enter new Username: ')
-            attributes_list2.append(self.username)
-            self.password = input('Please enter New password: ')
-            attributes_list2.append(self.password)
-            print('the following doctor profile was written: First Name: %s , Last Name %s , Specialty %s , Phone Number %s ,username %s , Password %s'
-                          % (self.first_name, self.last_name, self.specialty, self.phone_number, self.username, self.password))
-                    
-                    
-    # Creates lab test
+                   
     def database(self):
         for key,value in self.dictionary_keys.items():
             print(key,value)
-    # Returns patient ID
+            
     def fetch_database(self,key):
         return self.dictionary_keys[key]
     
@@ -158,49 +129,61 @@ def create_new_doctor(self):
         self.test = {'ABG': 500 , 'LFT': 400, 'COAGULATION': 600, 'CBC': 200, 'TSH': 100, 'CHOLESTEROL': 200}
         for key,value in self.test.items():
             print(key,value)
+            
     # Fetches lab tests
     def fetch_lab_tests(self,key):
-        return self.test[key]
+        return self.test_list[key]
+        
     # Fetches lab tests costs
     def fetch_lab_costs(self):
-        return self.test.values()
-    # Writes a text file with lab test costs
-    def test_cost(self):
-        w = sum(self.tests.values())
-        #for key in self.tests:
-        print(f'The tests ordered are {self.tests} and the sum of tests ordered are ${w}')
-            #print("The tests ordered are: {} ".format(key),end = "")
+        return self.test_list.values()
+        
+
     
     # Defines a function to request the lab tests 
     def lab_tests_request(self):
-        q = Doctor()
-        q.database()
-        doctor_request = input('Select the patient ID for the patient you wish to request tests: ')
-        request = q.fetch_database(doctor_request)
-        print(request)
-        q.lab_tests()
+        qt = Doctor()
+        qt.database()
         while True:  
-            try:                
-                request_number = int(input("How many tests to request? "))
-                for test in range(request_number):
-                    test_request = input('Which test to request? ').upper()
-                    test = q.fetch_lab_tests(test_request)
-                    test_cost = q.fetch_lab_costs()
-                    if test in test_cost: 
-                        self.cost = test
-                        self.tests[test_request] = self.cost
-                    else:
-                        print("Test not found")
-                q.test_cost()
-                user_input = input("Back to Doctor Menu? ")
-                if user_input == "y" or user_input == "Y":
-                    q.doctor_menu()
-                while user_input != 'y' and user_input != 'Y':
-                    user_input = input("That's not a valid choice. (Y)es or (N)o? ")
-                    if user_input == "n" or user_input == "N":
-                        sys.exit()
-            except ValueError:
+            try:
+                self.tests.clear()
+                doctor_request = input('Select the patient ID for the patient you wish to request tests: ')
+                name_request = input("What is the patient's first name? ")
+                number = input("Test number? ")
+                request = qt.fetch_database_value(doctor_request)
+                request_two = qt.fetch_database_value(number)
+                print(request)
+                qt.lab_tests()
+                if number in self.dictionary_keys.keys():
+                    if doctor_request in self.dictionary_keys.keys():
+                        if name_request in request:
+                            request_number = int(input("How many tests to request? "))
+                            for test in range(request_number):
+                                test_request = input('Which test to request? ').upper()
+                                test = qt.fetch_lab_tests(test_request)
+                                test_cost = qt.fetch_lab_costs()
+                                if test in test_cost: 
+                                    self.cost = test
+                                    self.tests[test_request] = self.cost
+                                    request_two.append(self.cost)
+                                    self.total = sum(request_two)
+                                else:
+                                    print("Test not found")  
+                            print(self.total)
+                            request.append(self.tests.copy())
+                            self.tabulation_total.append(self.cost) 
+                            qt.test_cost()
+                        user_input = input("Back to test menu? ")
+                        if user_input == "y" or user_input == "Y":
+                            qt.lab_tests_request()
+                        if user_input == "n" or user_input == "N":
+                            qt.doctor_menu()
+            except ValueError:            
                 print("Try again")
+    def test_cost(self):
+        print('\n'.join("{}: ${}".format(k,v) for k,v in self.tests.items()))
+
+   
     
     # Defines the doctor menu
     def doctor_menu(self):
@@ -247,7 +230,33 @@ def create_new_doctor(self):
                 print("Try again. ")
 
                 
-                
+    # Create a new doctor profile
+
+    def create_new_doctor(self):
+            input('Would you like to create new Doctor Profile')
+            create_new = input("That's not a valid choice, please try again\n (Y)es or (N)o? ")
+
+            while create_new != 'y' and create_new != 'Y':
+                print(create_new)
+
+            if create_new == 'Y' or create_new == 'y':
+                print('Lets create a new profile')
+                attributes_list2 = []
+                self.first_name = input('please enter first name of new doctor: ')
+                attributes_list2.append(self.first_name)
+                self.last_name = input('please enter last name of new doctor: ')
+                attributes_list2.append(self.last_name)
+                self.specialty = input('please enter specialty: ')
+                attributes_list2.append(self.specialty)
+                self.phone_number = input('please enter phone number: ')
+                attributes_list2.append(self.phone_number)
+                self.username = input('Please enter new Username: ')
+                attributes_list2.append(self.username)
+                self.password = input('Please enter New password: ')
+                attributes_list2.append(self.password)
+                print('the following doctor profile was written: First Name: %s , Last Name %s , Specialty %s , Phone Number %s ,username %s , Password %s'
+                              % (self.first_name, self.last_name, self.specialty, self.phone_number, self.username, self.password))
+                                    
                 
 class Patient(Doctor):
     def __init__(self, patient_id = 0, first_name = '', last_name = '', age = 0,

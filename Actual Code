@@ -437,7 +437,7 @@ class Nurse():
         dictionary_keys = {}
         while True:
             try:
-                nurse_welcome = int(input("Welcome to the nurse portal.\n To create a new patient press 1\n"
+                nurse_welcome = int(input("Welcome to the Nurse portal.\n To create a new patient press 1\n"
                                         "To view a patients details, press 2\n"))
                 try: 
                     nurse_welcome = int(nurse_welcome)

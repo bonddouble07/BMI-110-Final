@@ -43,15 +43,25 @@ class Menu:
 # PERSON MODULE
 class Person:
     def __init__(self, last_name, first_name):
-        self.last_name = last_name
         self.first_name = first_name
+        self.last_name = last_name
+        self.email = email
+        self.phone = phone 
 
     def print_name(self):
-        print("Profile for patient %s %s is: " %
-              (self.last_name, self.first_name))
+        print('\nProfile for %s %s: , Email: %s: , Phone number: %s' 
+              % (self.first_name, self.last_name, self.email, self.phone)) 
         
-        
-        
+pat = Person('null', 'null', 'null', 'null')
+#pat = patient since code can be used on patients to enter info; age and other atrributes can be added 
+pat.first_name = input('First name: ')
+pat.last_name = input('Last name: ')
+pat.email = input('Best email to be reached at: ')
+pat.phone = input('Phone Number (xxx) xxx-xxx: ')        
+
+#Call back the print statement within the class
+pat.printname()
+
 # DOCTOR MODULE       
 class Doctor(Person):
     # Initialize Doctor constants
@@ -332,20 +342,13 @@ class Nurse():
         self.address = address
         self.admit_date = admit_date
     def nurse_menu(self):
-        w = Doctor()
-        count = 0 
-        counts = 0 
-        main_menu = Menu()
-        doctor = Doctor()
+        dictionary_keys = {}
         while True:
             try:
                 nurse_welcome = int(input("Welcome to the nurse portal.\n To create a new patient press 1\n"
-                                        "To view a patients details, press 2\n"
-                                        "To return to the main menu, press 0\n))
+                                        "To view a patients details, press 2\n"))
                 try: 
                     nurse_welcome = int(nurse_welcome)
-                    if nurse_welcome == 0:
-                        main_menu.user_input()
                     if nurse_welcome == 1:
                         print("Nurse Portal selected.")
                         key_add = int(input("How many patients to add? "))

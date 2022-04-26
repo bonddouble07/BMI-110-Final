@@ -240,32 +240,33 @@ class Doctor(Person):
    
     # Create a new doctor profile
     def create_new_doctor(self):
+        
         w = Doctor()
         main_menu = Menu()
-        while True:
-            try:
-            input('Would you like to create new Doctor Profile')
-            create_new = input("That's not a valid choice, please try again\n (Y)es or (N)o? ")
+        
+            
+        create_new = input('Would you like to create new Doctor Profile')
 
-            while create_new != 'y' and create_new != 'Y':
-                print(create_new)
+        while create_new != 'y' and create_new != 'Y':
+        create_new = input("That's not a valid choice, please try again\n (Y)es or (N)o? ")
+        print(create_new)
 
-            if create_new == 'Y' or create_new == 'y':
-                print('Lets create a new profile')
-                attributes_list2 = []
-                self.first_name = input('please enter first name of new doctor: ')
-                attributes_list2.append(self.first_name)
-                self.last_name = input('please enter last name of new doctor: ')
-                attributes_list2.append(self.last_name)
-                self.specialty = input('please enter specialty: ')
-                attributes_list2.append(self.specialty)
-                self.phone_number = input('please enter phone number: ')
-                attributes_list2.append(self.phone_number)
-                self.username = input('Please enter new Username: ')
-                attributes_list2.append(self.username)
-                self.password = input('Please enter New password: ')
-                attributes_list2.append(self.password)
-                print('the following doctor profile was written: First Name: %s , Last Name %s , Specialty %s , Phone Number %s ,username %s , Password %s'
+        if create_new == 'Y' or create_new == 'y':
+            print('Lets create a new profile')
+            attributes_list2 = []
+            self.first_name = input('please enter first name of new doctor: ')
+            attributes_list2.append(self.first_name)
+            self.last_name = input('please enter last name of new doctor: ')
+            attributes_list2.append(self.last_name)
+            self.specialty = input('please enter specialty: ')
+            attributes_list2.append(self.specialty)
+            self.phone_number = input('please enter phone number: ')
+            attributes_list2.append(self.phone_number)
+            self.username = input('Please enter new Username: ')
+            attributes_list2.append(self.username)
+            self.password = input('Please enter New password: ')
+            attributes_list2.append(self.password)
+            print('the following doctor profile was written: First Name: %s , Last Name %s , Specialty %s , Phone Number %s ,username %s , Password %s'
                               % (self.first_name, self.last_name, self.specialty, self.phone_number, self.username, self.password))
                                     
 

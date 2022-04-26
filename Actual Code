@@ -106,7 +106,7 @@ class Doctor(Person):
                 doctor_welcome = int(input("Welcome to the Doctor Portal. To create a Patient profile, press 1.\n"
                                             "For a list of patients, press 2. To assign lab tests to a patient, press 3. \n"
                                             "To create a new Doctor Profile, press 4. \n"
-                                            "To Nurse view, Press 5 \n"
+                                            "To switch to  Nurse view, Press 5 \n"
                                             "To go back to the main menu, press 0. Please select: "))
                 try:
                     if doctor_welcome == 0:

@@ -352,22 +352,27 @@ class Doctor(Person):
         if create_new == 'Y' or create_new == 'y':
             print('Lets create a new profile')
             attributes_list2 = []
-            self.first_name = input('please enter first name of new doctor: ')
+            self.first_name = input('Please enter the first name of the doctor you wish to add: ')
             attributes_list2.append(self.first_name)
-            self.last_name = input('please enter last name of new doctor: ')
+            self.last_name = input('Please enter the last name of the doctor you wish to add: ')
             attributes_list2.append(self.last_name)
-            self.specialty = input('please enter specialty: ')
+            self.specialty = input('Please enter specialty: ')
             attributes_list2.append(self.specialty)
-            self.phone_number = input('please enter phone number: ')
+            self.phone_number = input('Please enter phone number: ')
             attributes_list2.append(self.phone_number)
             self.username = input('Please enter new Username: ')
             attributes_list2.append(self.username)
             self.password = input('Please enter New password: ')
             attributes_list2.append(self.password)
-            print('the following doctor profile was written: First Name: %s , Last Name %s , Specialty %s , Phone Number %s ,username %s , Password %s'
+            print('The following doctor profile was written: \nFirst Name: %s \nLast Name %s \nSpecialty %s \nPhone Number %s \nusername %s \nPassword %s'
                               % (self.first_name, self.last_name, self.specialty, self.phone_number, self.username, self.password))
 
 
+            doctor_login_info = {'c':'1'}
+            doctor_login_info[username] = password
+            print(doctor_login_info)
+            
+            
 class Patient(Doctor):
     def __init__(self, patient_id = 0, first_name = '', last_name = '', age = 0,
                  address = '', admit_date = ''):

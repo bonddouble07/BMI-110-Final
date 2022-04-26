@@ -166,6 +166,18 @@ class Doctor(Person):
         attributes_list.append(self.addition)
         self.dictionary_keys[key_id] = attributes_list
         
+     def discharge(self):
+        filename = input("First Name: ")
+        filename_2 = input("Last Name: ")
+        with open(filename + filename_2 + "_discharged", "w") as f:
+            f.write((filename))
+            number = input("ID to discharge: )
+            test = input("Test ID:")
+            if number in self.dictionary_keys.keys():
+                pop_dict = self.dicitonary_keys.pop(test)
+                pop_dict = self.dictionary_keys.pop(number)
+            print(self.dictionary_keys)
+        
     
     # Create a lab test database               
     def database(self):
